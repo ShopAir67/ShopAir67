@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Snapchat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, #fffc00, #ffffff); /* Dégradé jaune à blanc en arrière-plan */
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .snapchat-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0;
+            animation: revealContainer 2s ease-out forwards;
+        }
+
+        @keyframes revealContainer {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .snapchat-image {
+            width: 400px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: revealImage 2s ease-out forwards;
+        }
+
+        @keyframes revealImage {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .username {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: revealText 2s ease-out forwards;
+        }
+
+        @keyframes revealText {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .username a {
+            color: #333;
+            text-decoration: none; /* Enlève le soulignement */
+            transition: color 0.3s;
+        }
+
+        .username a:hover {
+            color: #555;
+        }
+
+        /* Style pour les boutons */
+        .button {
+            background-color: #0D0B31; /* Nouvelle couleur pour les boutons */
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px; /* Espacement entre les boutons */
+            width: 100px; /* Largeur fixe */
+            display: inline-block; /* Permet de définir une largeur */
+        }
+
+        .button:hover {
+            background-color: #001F5B; /* Couleur au survol */
+            transform: scale(1.05); /* Extension du bouton lors du survol */
+        }
+
+        /* Positionnement des boutons */
+        .button-container {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+
+        .button-container .button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact</h1>
+    </header>
+
+    <div class="snapchat-container">
+        <img src="https://upload.wikimedia.org/wikipedia/fr/7/75/Snapchat.png" alt="Snapchat" class="snapchat-image">
+        <p class="username"><a href="https://t.snapchat.com/Ekyxdxrw">@shopair67</a></p>
+    </div>
+
+    <!-- Conteneur des boutons -->
+    <div class="button-container">
+        <!-- Bouton Accueil -->
+        <a href="file:///C:/Users/Eleve/Desktop/Site/Page%20principale.html" class="button" style="width: auto; text-decoration: none;">Accueil</a>
+        <!-- Bouton de retour -->
+        <button class="button" onclick="goBack()">Retour</button>
+    </div>
+
+    <script>
+        // Fonction pour revenir en arrière
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html
