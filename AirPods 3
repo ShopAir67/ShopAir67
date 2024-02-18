@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Produit</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif; /* Police Helvetica */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .product-details {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .product-details img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer; /* Ajout pour le curseur lors du survol */
+            transition: transform 0.3s ease; /* Animation de transition */
+        }
+
+        .product-details img:hover {
+            transform: scale(1.05); /* Effet de zoom au survol */
+        }
+
+        .product-details h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-details p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-details button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+            width: auto; /* Ajustement de la largeur automatique */
+            font-size: 14px; /* Réduction de la taille de la police */
+        }
+
+        .product-details button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Style pour les boutons */
+        .button {
+            background-color: #0D0B31; /* Nouvelle couleur pour les boutons */
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px; /* Espacement entre les boutons */
+            width: 100px; /* Largeur fixe */
+            display: inline-block; /* Permet de définir une largeur */
+        }
+
+        .button:hover {
+            background-color: #001F5B; /* Couleur au survol */
+            transform: scale(1.05); /* Extension du bouton lors du survol */
+        }
+
+        /* Positionnement des boutons */
+        .button-container {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+
+        .button-container .button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Détails du Produit</h1>
+    </header>
+
+    <div class="product-details">
+        <img src="https://www.bouyguestelecom.fr/media/catalog/product//a/i/airpods_3eg_boitier_magsafe_01.png" alt="AirPods (3ᵉ gén.)">
+        <h2>AirPods (3ᵉ gén.)</h2>
+        <p>AirPods 3ème génération</p>
+        <p>Authenticité 1:1</p>
+        <p>Prix: 40€</p>
+        <p>Stock/Pas en stock veuillez nous contacter.</p>
+        <button id="contactBtn" onclick="redirectToContactPage()">Contactez-nous</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Ma Boutique en Ligne</p>
+    </footer>
+
+    <div class="button-container">
+        <a href="https://shopair67.github.io/ShopAir67/Page%20principale.html" class="button" style="text-decoration: none; width: 100px;">Accueil</a>
+        <button class="button" onclick="goBack()">Retour</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function redirectToContactPage() {
+            window.location.href = "https://shopair67.github.io/ShopAir67/Contact.html";
+        }
+
+        let startX, startY, isDragging = false;
+        let currentImageIndex = 0;
+        const images = [
+            "https://www.bouyguestelecom.fr/media/catalog/product//a/i/airpods_3eg_boitier_magsafe_01.png",
+            
+        ];
+        const productImage = document.querySelector('.product-details img');
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            productImage.src = images[currentImageIndex];
+            productImage.style.animation = "fadeIn 0.5s"; // Ajout de l'animation
+        }
+
+        function showPreviousImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            productImage.src = images[currentImageIndex];
+            productImage.style.animation = "fadeIn 0.5s"; // Ajout de l'animation
+        }
+
+        productImage.addEventListener('mousedown', mouseDown, false);
+        productImage.addEventListener('mouseup', mouseUp, false);
+        productImage.addEventListener('mousemove', mouseMove, false);
+
+        function mouseDown(event) {
+            startX = event.clientX;
+            startY = event.clientY;
+            isDragging = false;
+        }
+
+        function mouseUp(event) {
+            if (!isDragging) {
+                let deltaX = startX - event.clientX;
+                let deltaY = startY - event.clientY;
+
+                if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                    if (deltaX > 50) {
+                        showNextImage();
+                    } else if (deltaX < -50) {
+                        showPreviousImage();
+                    }
+                }
+            }
+
+            isDragging = false;
+        }
+
+        function mouseMove(event) {
+            isDragging = true;
+        }
+    </script>
+</body>
+</html>
